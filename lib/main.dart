@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trustlinesflutterwithwrapper/ui/home.dart';
+import 'package:trustlinesflutterwithwrapper/ui/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Trustline With JS Wrapper',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return OKToast(
+      child: MaterialApp(
+        title: 'Trustline With JS Wrapper',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomePage(),
       ),
-      home: const HomePage(),
     );
   }
 }
