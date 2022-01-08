@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:trustlinesflutterwithwrapper/bloc/api/api_bloc.dart';
+import 'package:trustlinesflutterwithwrapper/services/storage.dart';
 import 'package:trustlinesflutterwithwrapper/ui/home.dart';
 import 'package:trustlinesflutterwithwrapper/ui/widgets.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Storage.init();
   runApp(const MyApp());
 }
 

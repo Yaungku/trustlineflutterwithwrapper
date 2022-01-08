@@ -8,3 +8,5 @@ abstract class ApiEvent extends Equatable {
 }
 
 class ApiGetNetwork extends ApiEvent {}
+
+class ApiCreateWallet extends ApiEvent {}

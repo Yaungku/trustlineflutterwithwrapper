@@ -10,6 +10,18 @@ class Network {
   int? numUsers;
   bool? preventMediatorInterests;
 
+  Network(
+      {this.abbreviation,
+      this.address,
+      this.customInterests,
+      this.decimals,
+      this.interestRate,
+      this.interestRateDecimals,
+      this.isFrozen,
+      this.name,
+      this.numUsers,
+      this.preventMediatorInterests});
+
   Network.fromJson(Map<String, dynamic> json)
       : abbreviation = json['abbreviation'],
         address = json['address'],

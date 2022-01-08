@@ -13,6 +13,14 @@ class ApiSuccess extends ApiState {}
 
 class ApiLoading extends ApiState {}
 
+class ApiWalletData extends ApiState {
+  final Wallet data;
+  const ApiWalletData({required this.data});
+
+  @override
+  List<Object> get props => [data];
+}
+
 class ApiNetworkData extends ApiState {
   final List<Network> data;
   const ApiNetworkData({required this.data});
