@@ -1,7 +1,7 @@
 String networkurl = "https://tl-clientlib-wrapper-api.herokuapp.com/";
 String localhost = "https://10.0.2.2:8000/";
 
-var baseUrl = localhost;
+var baseUrl = networkurl;
 
 class Api {
   static var accepttrustline = baseUrl + "trustline/accept";

@@ -21,6 +21,7 @@ class Respository {
       print(response.body);
       throw Exception('Error getting response');
     }
+    print(response.body);
     return response.body;
   }
 }

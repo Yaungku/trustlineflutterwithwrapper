@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trustlinesflutterwithwrapper/bloc/api/api_bloc.dart';
 import 'package:trustlinesflutterwithwrapper/ui/home.dart';
 import 'package:trustlinesflutterwithwrapper/ui/widgets.dart';
 
@@ -13,12 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OKToast(
-      child: MaterialApp(
-        title: 'Trustline With JS Wrapper',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: BlocProvider(
+        create: (context) => ApiBloc(),
+        child: MaterialApp(
+          title: 'Trustline With JS Wrapper',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const HomePage(),
         ),
-        home: const HomePage(),
       ),
     );
   }

@@ -9,7 +9,7 @@ class NetworkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 15),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         decoration: BoxDecoration(
