@@ -29,6 +29,14 @@ class ApiNetworkData extends ApiState {
   List<Object> get props => [data];
 }
 
+class ApiOverviewData extends ApiState {
+  final UserOverview data;
+  const ApiOverviewData({required this.data});
+
+  @override
+  List<Object> get props => [data];
+}
+
 class ApiFail extends ApiState {
   final String error;
 

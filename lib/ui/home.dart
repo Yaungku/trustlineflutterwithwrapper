@@ -69,7 +69,12 @@ class _HomePageState extends State<HomePage> {
           ),
           TileContainer(
             title: "Get User Overview of specific currency network",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const UserOverviewPage()));
+            },
           ),
           TileContainer(
             title: "Transfer",
@@ -81,7 +86,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (builder) => const CreateWallet()));
+                      builder: (builder) => const CreateWalletPage()));
             },
           ),
           TileContainer(

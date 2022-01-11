@@ -14,6 +14,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc() : super(ApiInit()) {
     on<ApiGetNetwork>(getNetworkState);
     on<ApiCreateWallet>(createWalletState);
+    on<ApiGetOverview>(getUserOverviewState);
   }
 
   Future getNetworkState(ApiGetNetwork event, Emitter<ApiState> emit) async {
@@ -44,6 +45,31 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       Storage.prefs!.setInt(cversion, data.version!);
 
       emit(ApiWalletData(data: data));
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future getAccountEventsState(
+      ApiGetEvents event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      var response = await Respository.getEvents(event.wallet);
+
+      emit(ApiSuccess());
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future getUserOverviewState(
+      ApiGetOverview event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      var response =
+          await Respository.getuserOverview(event.wallet, event.network);
+      UserOverview data = UserOverview.fromJson(jsonDecode(response));
+      emit(ApiOverviewData(data: data));
     } catch (e) {
       emit(ApiFail(error: e.toString()));
     }

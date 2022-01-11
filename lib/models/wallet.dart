@@ -11,6 +11,13 @@ class Wallet {
         version = json['version'],
         type = json['type'],
         keys = SigningKey.fromJson(json['meta']['signingKey']);
+
+  Map<String, dynamic> toJson() => {
+        'address': address,
+        'version': version,
+        'type': type,
+        'meta' 'signingKey': keys,
+      };
 }
 
 class SigningKey {
@@ -22,4 +29,9 @@ class SigningKey {
   SigningKey.fromJson(Map<String, dynamic> json)
       : mnemonic = json['mnemonic'],
         privatekey = json['privateKey'];
+
+  Map<String, dynamic> toJson() => {
+        'mnemonic': mnemonic,
+        'privateKey': privatekey,
+      };
 }

@@ -5,14 +5,14 @@ import 'package:trustlinesflutterwithwrapper/services/storage.dart';
 import 'package:trustlinesflutterwithwrapper/ui/constants.dart';
 import 'package:trustlinesflutterwithwrapper/ui/widgets.dart';
 
-class CreateWallet extends StatefulWidget {
-  const CreateWallet({Key? key}) : super(key: key);
+class CreateWalletPage extends StatefulWidget {
+  const CreateWalletPage({Key? key}) : super(key: key);
 
   @override
-  _CreateWalletState createState() => _CreateWalletState();
+  _CreateWalletPageState createState() => _CreateWalletPageState();
 }
 
-class _CreateWalletState extends State<CreateWallet> {
+class _CreateWalletPageState extends State<CreateWalletPage> {
   final ApiBloc apiBloc = ApiBloc();
   Wallet? wallet = Wallet();
 
