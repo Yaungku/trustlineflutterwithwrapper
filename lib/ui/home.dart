@@ -12,25 +12,48 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String? publickey;
-  @override
-  void initState() {
-    setState(() {
-      publickey = Storage.prefs!.getString(cpublickey)!;
-    });
-
-    super.initState();
+  void deleteDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Are you sure to delete?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () {
+              Storage.prefs!.remove(cpublickey);
+              Storage.prefs!.remove(cprivatekey);
+              Storage.prefs!.remove(cseed);
+              Storage.prefs!.remove(ctype);
+              Storage.prefs!.remove(cversion);
+              Navigator.pop(context);
+              setState(() {});
+            },
+            child: const Text(
+              "Delete",
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    String? key = Storage.prefs!.getString(cpublickey);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Trustline with Wrapper"),
       ),
       body: ListView(
         children: [
-          (publickey != null) ? publickeyField() : Container(),
+          (key != null) ? publickeyField(key) : Container(),
           TileContainer(
             title: "Get Events",
             ontap: () {},
@@ -71,14 +94,16 @@ class _HomePageState extends State<HomePage> {
           ),
           TileContainer(
             title: "Delete Wallet",
-            ontap: () {},
+            ontap: () {
+              deleteDialog();
+            },
           ),
         ],
       ),
     );
   }
 
-  Widget publickeyField() {
+  Widget publickeyField(String key) {
     return Column(
       children: [
         const SizedBox(
@@ -93,7 +118,7 @@ class _HomePageState extends State<HomePage> {
         Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: SelectableText(
-            publickey!,
+            key,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 18),
           ),

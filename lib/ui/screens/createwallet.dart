@@ -14,25 +14,18 @@ class CreateWallet extends StatefulWidget {
 
 class _CreateWalletState extends State<CreateWallet> {
   final ApiBloc apiBloc = ApiBloc();
-  Wallet? wallet;
-
-  @override
-  void initState() {
-    String public = Storage.prefs!.getString(cpublickey)!;
-    String private = Storage.prefs!.getString(cprivatekey)!;
-    int version = Storage.prefs!.getInt(cversion)!;
-    String seed = Storage.prefs!.getString(cseed)!;
-    String type = Storage.prefs!.getString(ctype)!;
-    SigningKey keys = SigningKey(mnemonic: seed, privatekey: private);
-    setState(() {
-      wallet =
-          Wallet(address: public, version: version, type: type, keys: keys);
-    });
-    super.initState();
-  }
+  Wallet? wallet = Wallet();
 
   @override
   Widget build(BuildContext context) {
+    String? public = Storage.prefs!.getString(cpublickey);
+    String? private = Storage.prefs!.getString(cprivatekey);
+    int? version = Storage.prefs!.getInt(cversion);
+    String? seed = Storage.prefs!.getString(cseed);
+    String? type = Storage.prefs!.getString(ctype);
+    SigningKey? keys = SigningKey(mnemonic: seed, privatekey: private);
+    wallet = Wallet(address: public, version: version, type: type, keys: keys);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Create Trustline Wallet"),
@@ -41,6 +34,10 @@ class _CreateWalletState extends State<CreateWallet> {
         bloc: apiBloc,
         listener: (context, state) {
           print(state);
+          if (state is ApiWalletData) {
+            setState(() {});
+            showToast("Wallet Created");
+          }
         },
         builder: (context, state) {
           return Column(
@@ -52,13 +49,25 @@ class _CreateWalletState extends State<CreateWallet> {
                       child: CircularProgressIndicator())
                   : createbtn(),
               () {
-                if (wallet != null) {
+                if (wallet!.address != null) {
                   return dataContainer(wallet!);
                 }
                 return Container();
               }(),
               () {
-                if (wallet != null) {
+                if (wallet!.address != null) {
+                  return TileContainer(
+                    title: "Copy Public Key",
+                    ontap: () {
+                      FlutterClipboard.copy(wallet!.address!)
+                          .then((value) => showToast("Copied Private Key"));
+                    },
+                  );
+                }
+                return Container();
+              }(),
+              () {
+                if (wallet!.address != null) {
                   return TileContainer(
                     title: "Copy Private Key",
                     ontap: () {
@@ -70,7 +79,7 @@ class _CreateWalletState extends State<CreateWallet> {
                 return Container();
               }(),
               () {
-                if (wallet != null) {
+                if (wallet!.address != null) {
                   return TileContainer(
                     title: "Copy Seed",
                     ontap: () {

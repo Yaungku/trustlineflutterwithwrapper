@@ -23,4 +23,15 @@ class Respository {
     }
     return response.body;
   }
+
+  static Future getEvents() async {
+    String url = Api.events;
+
+    final response = await http.post(Uri.parse(url), headers: globalheader);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception('Error getting response');
+    }
+    return response.body;
+  }
 }
