@@ -91,11 +91,21 @@ class _HomePageState extends State<HomePage> {
           ),
           TileContainer(
             title: "Recover Wallet data from seed",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const RecoverFromSeedPage()));
+            },
           ),
           TileContainer(
             title: "Recover Wallet data from private key",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const RecoverFromPrivateKeyPage()));
+            },
           ),
           TileContainer(
             title: "Delete Wallet",

@@ -71,4 +71,40 @@ class Respository {
     }
     return response.body;
   }
+
+  static Future recoverFromseed(String seed) async {
+    String url = Api.recoverfromseed;
+
+    var body = jsonEncode(
+      {
+        "seed": seed,
+      },
+    );
+
+    final response =
+        await http.post(Uri.parse(url), headers: globalheader, body: body);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception('Error getting response');
+    }
+    return response.body;
+  }
+
+  static Future recoverFromPrivateKey(String privateKey) async {
+    String url = Api.recoverfromprivatekey;
+
+    var body = jsonEncode(
+      {
+        "key": privateKey,
+      },
+    );
+
+    final response =
+        await http.post(Uri.parse(url), headers: globalheader, body: body);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception('Error getting response');
+    }
+    return response.body;
+  }
 }

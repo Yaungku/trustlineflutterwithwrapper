@@ -60,7 +60,7 @@ class _CreateWalletPageState extends State<CreateWalletPage> {
                     title: "Copy Public Key",
                     ontap: () {
                       FlutterClipboard.copy(wallet!.address!)
-                          .then((value) => showToast("Copied Private Key"));
+                          .then((value) => showToast("Copied Public Key"));
                     },
                   );
                 }
@@ -108,44 +108,13 @@ class _CreateWalletPageState extends State<CreateWalletPage> {
         ),
         child: Column(
           children: [
-            centerRow("Address", data.address!),
-            centerRow("Version", data.version.toString()),
-            centerRow("Type", data.type!),
-            centerRow("Mnemonic", data.keys!.mnemonic!),
-            centerRow("Private Key", data.keys!.privatekey!),
+            CenterRow("Address", data.address!),
+            CenterRow("Version", data.version.toString()),
+            CenterRow("Type", data.type!),
+            CenterRow("Mnemonic", data.keys!.mnemonic ?? ""),
+            CenterRow("Private Key", data.keys!.privatekey!),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget centerRow(String title, String sub) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: [
-          Flexible(
-            flex: 1,
-            child: SizedBox(
-              width: 500,
-              child: Text(
-                title,
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            child: SizedBox(
-              width: 500,
-              child: SelectableText(
-                sub,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

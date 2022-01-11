@@ -163,78 +163,9 @@ class _UserOverviewPageState extends State<UserOverviewPage> {
           const SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              const Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: Text(
-                    "Decimal",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: SelectableText(
-                    decimals,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: Text(
-                    "Raw",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: SelectableText(
-                    raw,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: Text(
-                    "Value",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: SizedBox(
-                  width: 500,
-                  child: SelectableText(
-                    value,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          CenterRow("Decimal", decimals),
+          CenterRow("Raw", raw),
+          CenterRow("Value", value),
         ],
       ),
     );

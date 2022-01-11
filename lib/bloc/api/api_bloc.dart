@@ -15,6 +15,8 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     on<ApiGetNetwork>(getNetworkState);
     on<ApiCreateWallet>(createWalletState);
     on<ApiGetOverview>(getUserOverviewState);
+    on<ApiRecoverFromSeed>(reoverFromSeedState);
+    on<ApiRecoverFromPrivateKey>(recoverFromPrivatekeyState);
   }
 
   Future getNetworkState(ApiGetNetwork event, Emitter<ApiState> emit) async {
@@ -70,6 +72,32 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
           await Respository.getuserOverview(event.wallet, event.network);
       UserOverview data = UserOverview.fromJson(jsonDecode(response));
       emit(ApiOverviewData(data: data));
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future reoverFromSeedState(
+      ApiRecoverFromSeed event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      var response = await Respository.recoverFromseed(event.seed);
+      Wallet data = Wallet.fromJson(jsonDecode(response));
+
+      emit(ApiWalletData(data: data));
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future recoverFromPrivatekeyState(
+      ApiRecoverFromPrivateKey event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      var response = await Respository.recoverFromPrivateKey(event.privateKey);
+      Wallet data = Wallet.fromJson(jsonDecode(response));
+
+      emit(ApiWalletData(data: data));
     } catch (e) {
       emit(ApiFail(error: e.toString()));
     }

@@ -29,3 +29,21 @@ class ApiGetOverview extends ApiEvent {
   @override
   List<Object> get props => [wallet, network];
 }
+
+class ApiRecoverFromSeed extends ApiEvent {
+  final String seed;
+
+  const ApiRecoverFromSeed({required this.seed});
+
+  @override
+  List<Object> get props => [seed];
+}
+
+class ApiRecoverFromPrivateKey extends ApiEvent {
+  final String privateKey;
+
+  const ApiRecoverFromPrivateKey({required this.privateKey});
+
+  @override
+  List<Object> get props => [privateKey];
+}
