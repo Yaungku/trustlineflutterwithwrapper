@@ -56,7 +56,12 @@ class _HomePageState extends State<HomePage> {
           (key != null) ? publickeyField(key) : Container(),
           TileContainer(
             title: "Get Events",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const GetEventPage()));
+            },
           ),
           TileContainer(
             title: "Get Currency Networks",

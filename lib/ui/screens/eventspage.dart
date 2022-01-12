@@ -16,7 +16,7 @@ class _GetEventPageState extends State<GetEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Currency Networks"),
+        title: const Text("Events"),
       ),
       body: BlocConsumer<ApiBloc, ApiState>(
         bloc: apiBloc,
