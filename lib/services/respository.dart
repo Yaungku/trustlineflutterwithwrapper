@@ -11,7 +11,7 @@ class Respository {
     final response = await http.get(Uri.parse(url), headers: globalheader);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
     }
     return response.body;
   }
@@ -22,7 +22,7 @@ class Respository {
     final response = await http.get(Uri.parse(url), headers: globalheader);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
     }
     return response.body;
   }
@@ -48,7 +48,7 @@ class Respository {
         await http.post(Uri.parse(url), headers: globalheader, body: body);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
     }
     return response.body;
   }
@@ -67,7 +67,7 @@ class Respository {
         await http.post(Uri.parse(url), headers: globalheader, body: body);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
     }
     return response.body;
   }
@@ -85,7 +85,7 @@ class Respository {
         await http.post(Uri.parse(url), headers: globalheader, body: body);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
     }
     return response.body;
   }
@@ -103,7 +103,38 @@ class Respository {
         await http.post(Uri.parse(url), headers: globalheader, body: body);
     if (response.statusCode != 200) {
       print(response.body);
-      throw Exception('Error getting response');
+      throw Exception(response.body);
+    }
+    return response.body;
+  }
+
+  static Future transfer(Transfer data) async {
+    String url = Api.transfer;
+
+    var body = jsonEncode(
+      {
+        "networkAddress": data.networkAddress,
+        "receiverAddress": data.receiverAddress,
+        "value": data.value,
+        "wallet": {
+          "address": data.wallet!.address,
+          "version": data.wallet!.version,
+          "type": data.wallet!.type,
+          "meta": {
+            "signingKey": {
+              "mnemonic": data.wallet!.keys!.mnemonic,
+              "privateKey": data.wallet!.keys!.privatekey,
+            }
+          }
+        }
+      },
+    );
+
+    final response =
+        await http.post(Uri.parse(url), headers: globalheader, body: body);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception(response.body);
     }
     return response.body;
   }

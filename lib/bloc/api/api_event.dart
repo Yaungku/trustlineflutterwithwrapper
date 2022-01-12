@@ -47,3 +47,12 @@ class ApiRecoverFromPrivateKey extends ApiEvent {
   @override
   List<Object> get props => [privateKey];
 }
+
+class ApiTransfer extends ApiEvent {
+  final Transfer data;
+
+  const ApiTransfer({required this.data});
+
+  @override
+  List<Object> get props => [data];
+}

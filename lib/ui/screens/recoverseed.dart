@@ -35,6 +35,7 @@ class _RecoverFromSeedPageState extends State<RecoverFromSeedPage> {
               Storage.prefs!.setString(ctype, data.type!);
               Storage.prefs!.setInt(cversion, data.version!);
               Navigator.pop(context);
+              showToast("Saved");
               setState(() {});
             },
             child: const Text(

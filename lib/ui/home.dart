@@ -78,7 +78,12 @@ class _HomePageState extends State<HomePage> {
           ),
           TileContainer(
             title: "Transfer",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const TransferPage()));
+            },
           ),
           TileContainer(
             title: "Create Identity Type Trustline Wallet",

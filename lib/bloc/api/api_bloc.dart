@@ -17,6 +17,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     on<ApiGetOverview>(getUserOverviewState);
     on<ApiRecoverFromSeed>(reoverFromSeedState);
     on<ApiRecoverFromPrivateKey>(recoverFromPrivatekeyState);
+    on<ApiTransfer>(transferState);
   }
 
   Future getNetworkState(ApiGetNetwork event, Emitter<ApiState> emit) async {
@@ -98,6 +99,16 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       Wallet data = Wallet.fromJson(jsonDecode(response));
 
       emit(ApiWalletData(data: data));
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future transferState(ApiTransfer event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      await Respository.transfer(event.data);
+      emit(ApiSuccess());
     } catch (e) {
       emit(ApiFail(error: e.toString()));
     }
