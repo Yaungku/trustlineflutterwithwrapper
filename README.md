@@ -35,6 +35,11 @@ lib > src > services > api.dart
 var baseUrl = localhost //(Default: networkurl)
 ```
 
+
+## Integrate Guide
+
+You can look how to integrate to your app [here](integrate.md).
+
 ## APK File
 
 https://drive.google.com/drive/folders/1R9XECB7cfE2YBdlbIAkzT06OPt8oSRKG?usp=sharing (Tested on S9)
@@ -49,8 +54,6 @@ https://drive.google.com/drive/folders/1R9XECB7cfE2YBdlbIAkzT06OPt8oSRKG?usp=sha
 ## Issues
 
 1. Get Events have unknown data(Currently Working on this)
-2. Update Trustline(Not Done cuz unknown address of events)
-3. Accept Trustline(Not Done cuz unknown address of events)
 
 ## Credits to
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:trustlinesflutterwithwrapper/models/credit_line.dart';
 import 'package:trustlinesflutterwithwrapper/models/models.dart';
 import 'package:trustlinesflutterwithwrapper/services/respository.dart';
 import 'package:trustlinesflutterwithwrapper/services/storage.dart';
@@ -18,6 +19,8 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     on<ApiRecoverFromSeed>(reoverFromSeedState);
     on<ApiRecoverFromPrivateKey>(recoverFromPrivatekeyState);
     on<ApiTransfer>(transferState);
+    on<ApiAcceptTrustline>(acceptTrustlineState);
+    on<ApiUpdateTrustline>(updateTrustlineState);
   }
 
   Future getNetworkState(ApiGetNetwork event, Emitter<ApiState> emit) async {
@@ -108,6 +111,28 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     emit(ApiLoading());
     try {
       await Respository.transfer(event.data);
+      emit(ApiSuccess());
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future acceptTrustlineState(
+      ApiAcceptTrustline event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      await Respository.acceptTrustline(event.data);
+      emit(ApiSuccess());
+    } catch (e) {
+      emit(ApiFail(error: e.toString()));
+    }
+  }
+
+  Future updateTrustlineState(
+      ApiUpdateTrustline event, Emitter<ApiState> emit) async {
+    emit(ApiLoading());
+    try {
+      await Respository.updateTrustline(event.data);
       emit(ApiSuccess());
     } catch (e) {
       emit(ApiFail(error: e.toString()));
