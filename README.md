@@ -38,7 +38,7 @@ var baseUrl = localhost //(Default: networkurl)
 
 ## Integrate Guide
 
-You can look how to integrate to your app [here](intergrate.md).
+You can look how to integrate to your app [here](integrate.md).
 
 ## APK File
 
