@@ -20,4 +20,4 @@ Add these libs into your app project.
 ## Guide
 ### Flutter Bloc
 You should read [flutter_bloc](https://pub.dev/packages/flutter_bloc) documentations here to understand how bloc works.
-\n You can look at lib > main.dart as ref for easy understanding.
+You can look at lib > main.dart as ref for easy understanding.
