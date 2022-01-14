@@ -2,12 +2,12 @@
 
 ## Required Libs
 
-'''
+```
   equatable: ^2.0.3 //(Latest)
   flutter_bloc: ^8.0.1 //(Latest)
   shared_preferences: ^2.0.11 //(Latest)
   http: ^0.13.4 //(Latest)
-'''
+```
 
 Add these libs into your app project.
 ### Working on 14 Jan 22
