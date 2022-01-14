@@ -56,3 +56,21 @@ class ApiTransfer extends ApiEvent {
   @override
   List<Object> get props => [data];
 }
+
+class ApiAcceptTrustline extends ApiEvent {
+  final CreditLine data;
+
+  const ApiAcceptTrustline({required this.data});
+
+  @override
+  List<Object> get props => [data];
+}
+
+class ApiUpdateTrustline extends ApiEvent {
+  final CreditLine data;
+
+  const ApiUpdateTrustline({required this.data});
+
+  @override
+  List<Object> get props => [data];
+}

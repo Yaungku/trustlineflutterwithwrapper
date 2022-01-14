@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:trustlinesflutterwithwrapper/models/credit_line.dart';
 import 'package:trustlinesflutterwithwrapper/models/models.dart';
 import 'package:trustlinesflutterwithwrapper/services/api.dart';
 
@@ -116,6 +117,70 @@ class Respository {
         "networkAddress": data.networkAddress,
         "receiverAddress": data.receiverAddress,
         "value": data.value,
+        "wallet": {
+          "address": data.wallet!.address,
+          "version": data.wallet!.version,
+          "type": data.wallet!.type,
+          "meta": {
+            "signingKey": {
+              "mnemonic": data.wallet!.keys!.mnemonic,
+              "privateKey": data.wallet!.keys!.privatekey,
+            }
+          }
+        }
+      },
+    );
+
+    final response =
+        await http.post(Uri.parse(url), headers: globalheader, body: body);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception(response.body);
+    }
+    return response.body;
+  }
+
+  static Future updateTrustline(CreditLine data) async {
+    String url = Api.updatetrustline;
+
+    var body = jsonEncode(
+      {
+        "networkAddress": data.networkAddress,
+        "contactAddress": data.contactAddress,
+        "clGiven": data.clgiven,
+        "clReceived": data.clreceived,
+        "wallet": {
+          "address": data.wallet!.address,
+          "version": data.wallet!.version,
+          "type": data.wallet!.type,
+          "meta": {
+            "signingKey": {
+              "mnemonic": data.wallet!.keys!.mnemonic,
+              "privateKey": data.wallet!.keys!.privatekey,
+            }
+          }
+        }
+      },
+    );
+
+    final response =
+        await http.post(Uri.parse(url), headers: globalheader, body: body);
+    if (response.statusCode != 200) {
+      print(response.body);
+      throw Exception(response.body);
+    }
+    return response.body;
+  }
+
+  static Future acceptTrustline(CreditLine data) async {
+    String url = Api.accepttrustline;
+
+    var body = jsonEncode(
+      {
+        "networkAddress": data.networkAddress,
+        "contactAddress": data.contactAddress,
+        "clGiven": data.clgiven,
+        "clReceived": data.clreceived,
         "wallet": {
           "address": data.wallet!.address,
           "version": data.wallet!.version,

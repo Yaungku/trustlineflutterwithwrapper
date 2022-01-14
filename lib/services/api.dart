@@ -5,6 +5,7 @@ var baseUrl = networkurl;
 
 class Api {
   static var accepttrustline = baseUrl + "trustline/accept";
+  static var updatetrustline = baseUrl + "trustline/update";
   static var createwallet = baseUrl + "user";
   static var currencynetworks = baseUrl + "network";
   static var events = baseUrl + "event";

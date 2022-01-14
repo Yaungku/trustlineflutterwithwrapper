@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trustlinesflutterwithwrapper/services/storage.dart';
 import 'package:trustlinesflutterwithwrapper/ui/constants.dart';
 import 'package:trustlinesflutterwithwrapper/ui/routes.dart';
+import 'package:trustlinesflutterwithwrapper/ui/screens/accepttrustline.dart';
+import 'package:trustlinesflutterwithwrapper/ui/screens/updatetrustline.dart';
 import 'package:trustlinesflutterwithwrapper/ui/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -91,6 +93,24 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           TileContainer(
+            title: "Accept Trustline",
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const AcceptTrustlinePage()));
+            },
+          ),
+          TileContainer(
+            title: "Update Trustline",
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const UpdateTrustlinePage()));
+            },
+          ),
+          TileContainer(
             title: "Create Identity Type Trustline Wallet",
             ontap: () {
               Navigator.push(
@@ -122,6 +142,9 @@ class _HomePageState extends State<HomePage> {
             ontap: () {
               deleteDialog();
             },
+          ),
+          const SizedBox(
+            height: 30,
           ),
         ],
       ),
