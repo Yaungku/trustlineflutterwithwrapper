@@ -35,6 +35,11 @@ lib > src > services > api.dart
 var baseUrl = localhost //(Default: networkurl)
 ```
 
+
+## Integrate Guide
+
+You can look how to integrate to your app [here](intergrate.md).
+
 ## APK File
 
 https://drive.google.com/drive/folders/1R9XECB7cfE2YBdlbIAkzT06OPt8oSRKG?usp=sharing (Tested on S9)
