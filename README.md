@@ -1,5 +1,7 @@
 # Trustline Flutter App with JS Wrapper
 
+### Latest Updated on 22 Jan 2022
+
 This project is about using Trustline with JS Wrapper. This take most of common used apis of Clientlib and wrap with a server. This is very easy to use.
 This app currently uses [this api reference](https://github.com/thuaung30/tl-clientlib-wrapper-api).
 
@@ -53,7 +55,7 @@ https://drive.google.com/drive/folders/1R9XECB7cfE2YBdlbIAkzT06OPt8oSRKG?usp=sha
 
 ## Issues
 
-1. Get Events have unknown data(Currently Working on this)
+No for now.
 
 ## Credits to
 

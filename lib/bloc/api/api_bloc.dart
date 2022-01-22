@@ -15,6 +15,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc() : super(ApiInit()) {
     on<ApiGetNetwork>(getNetworkState);
     on<ApiCreateWallet>(createWalletState);
+    on<ApiGetEvents>(getAccountEventsState);
     on<ApiGetOverview>(getUserOverviewState);
     on<ApiRecoverFromSeed>(reoverFromSeedState);
     on<ApiRecoverFromPrivateKey>(recoverFromPrivatekeyState);
@@ -61,8 +62,10 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     emit(ApiLoading());
     try {
       var response = await Respository.getEvents(event.wallet);
+      List<Event> data =
+          (jsonDecode(response) as List).map((i) => Event.fromJson(i)).toList();
 
-      emit(ApiSuccess());
+      emit(ApiEventData(data: data));
     } catch (e) {
       emit(ApiFail(error: e.toString()));
     }
